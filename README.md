@@ -4,7 +4,7 @@ A modern, responsive developer portfolio built with **Next.js**, **React.js**, a
 Showcases projects, blog articles, and contact information with a clean, accessible design.  
 Features dynamic routing, SEO optimization, dark mode, and interactive UI elements for an engaging user experience.
 
----
+-
 
 ## 🚀 Demo
 
