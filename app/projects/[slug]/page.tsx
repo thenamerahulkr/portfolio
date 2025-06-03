@@ -49,27 +49,27 @@ const projects = [
     githubUrl: "https://github.com/thenamerahulkr/currency-converter",
     client: "Personal Project",
     year: "2023",
-    role: "Frontend Developer", 
+    role: "Frontend Developer",
     challenge: "Implementing accurate, real-time currency conversion with a modern, user-friendly design.",
     solution: "Utilized a public exchange rate API for live rates, designed a clean and intuitive UI with Tailwind CSS, and ensured the app is responsive and accessible.",
     nextProject: {
-    title: "quicklist-io",
-    slug: "quicklist-io",
+      title: "quicklist-io",
+      slug: "quicklist-io",
     },
   },
   {
     id: 3,
     title: "Klimate-Dashboard",
     description:
-    "A visually rich, real-time weather dashboard built with React.js and Tailwind CSS. Klimate provides current weather, detailed forecasts, and interactive charts for any location. Features include live temperature, humidity, wind speed, sunrise/sunset, and a 5-day forecast, all presented in a modern dark UI with responsive design.",
+      "A visually rich, real-time weather dashboard built with React.js and Tailwind CSS. Klimate provides current weather, detailed forecasts, and interactive charts for any location. Features include live temperature, humidity, wind speed, sunrise/sunset, and a 5-day forecast, all presented in a modern dark UI with responsive design.",
     technologies: ["React.js", "Tailwind CSS", "Chart.js", "Weather API"],
     image: "/images/klimate.png", // Use your actual image path
     slug: "Klimate-Dashboard",
     type: "hosted",
     featuredImage: "/images/klimate.png?height=600&width=800", // Or use a larger version
     gallery: [
-    "/images/klimate.png?height=600&width=800",
-    "/images/klimate.png?height=600&width=800"
+      "/images/klimate.png?height=600&width=800",
+      "/images/klimate.png?height=600&width=800"
     ],
     liveUrl: "https://klimatespace.vercel.app/", // Replace with your live URL
     githubUrl: "https://github.com/thenamerahulkr/klimate", // Replace with your repo
@@ -83,6 +83,33 @@ const projects = [
       slug: "currency-converter",
     },
   },
+  {
+    id: 4,
+    title: "Portfolio Website",
+    description:
+      "A modern, responsive developer portfolio built with Next.js, React.js, and Tailwind CSS. Showcases projects, blog articles, and contact information with a clean, accessible design. Features dynamic routing, SEO optimization, dark mode, and interactive UI elements for an engaging user experience.",
+    technologies: ["Next.js", "React.js", "Tailwind CSS", "Lucide Icons"],
+    image: "/images/portfolio.png", // Place your portfolio screenshot here
+    slug: "portfolio-website",
+    type: "hosted",
+    featuredImage: "/images/portfolio.png",
+    gallery: [
+      "/images/portfolio.png",
+      "/images/portfolio-about.png",
+      "/images/portfolio-project.png",
+    ],
+    liveUrl: "https://your-portfolio-domain.com", // Replace with your live portfolio URL
+    githubUrl: "https://github.com/thenamerahulkr/portfolio", // Replace with your repo URL
+    client: "Personal Project",
+    year: "2025",
+    role: "Full Stack Developer",
+    challenge: "Building a fast, accessible, and visually appealing portfolio that is easy to update and showcases all my work.",
+    solution: "Used Next.js App Router, Tailwind CSS, and custom components for a modular, maintainable, and beautiful portfolio site.",
+    nextProject: {
+      title: "Klimate-Dashboard",
+      slug: "Klimate-Dashboard",
+    },
+  }
 ];
 
 // For static generation (optional, if using App Router)

@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 
 // Your local blog posts
-const blogPosts = [
+export const blogPosts = [
   {
     id: 1,
     title: "Mastering JavaScript's Array Powerhouses: forEach, map, filter, reduce, spread, and rest",
@@ -63,7 +63,6 @@ const blogPosts = [
     excerpt:
       "A practical guide to using middleware in Express.js applications. Learn what middleware is, how it works, and how to build scalable Node.js APIs with it.",
   },
-
 ];
 
 export default function BlogPage() {

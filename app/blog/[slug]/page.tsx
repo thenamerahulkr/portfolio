@@ -15,7 +15,7 @@ const blogPosts = [
     image: "/images/medium1.png",
     excerpt:
       "A concise guide to JavaScript's essential array methods—learn how to iterate, transform, filter, aggregate, and expand arrays like a pro. This comprehensive tutorial covers forEach, map, filter, reduce, and the powerful spread and rest operators with practical examples.",
-    mediumUrl: "https://medium.com/thenamerahulkr/js-array-powerhouses-foreach-map-filter-reduce-abcdef123456", // <-- Add your Medium URL here
+    mediumUrl: "https://medium.com/@thenamerahulkr/mastering-javascripts-array-powerhouses-foreach-map-filter-reduce-spread-and-rest-7f3f0d19e309", // <-- Add your Medium URL here
     content: `
       <p class="text-xl leading-relaxed mb-6">JavaScript arrays are incredibly powerful, especially when you master methods like <strong>forEach</strong>, <strong>map</strong>, <strong>filter</strong>, <strong>reduce</strong>, and the <strong>spread</strong> and <strong>rest</strong> operators. In this article, we'll break down what each does and provide practical examples.</p>
       <h2 class="text-3xl font-bold mt-12 mb-6">forEach</h2>
@@ -64,6 +64,7 @@ arr.forEach(item =&gt; console.log(item));</code></pre>
     category: "React",
     image: "/images/medium2.png", // Place your screenshot in /public/images/
     excerpt: "Detailed explanation about React’s useEffect cleanup function: what it is, when it runs, and why it’s vital for preventing memory leaks and bugs.",
+    mediumUrl: "https://medium.com/@thenamerahulkr/what-is-the-react-useeffect-cleanup-function-and-how-it-works-bc50ab7c8a77", // <-- Add your Medium URL here
     content: `
     <p class="text-xl leading-relaxed mb-6"><em>Detailed explanation about React’s <code>useEffect</code> cleanup function works.</em></p>
     <h2 class="text-3xl font-bold mt-12 mb-6">What is the useEffect cleanup function?</h2>
@@ -138,6 +139,7 @@ arr.forEach(item =&gt; console.log(item));</code></pre>
     category: "Architecture",
     image: "/images/medium3.png", // Save the attached image in /public/images/
     excerpt: "In the world of software development, Monolithic Architecture and Microservices are two widely used approaches for designing applications. This article explores both architectures, their advantages and disadvantages, and when to use them.",
+    mediumUrl: "https://medium.com/@thenamerahulkr/monolithic-architecture-vs-microservices-which-one-to-choose-75d13a4aa348", // <-- Add your Medium URL here
     content: `
       <p class="text-xl leading-relaxed mb-6">
         In the world of software development, choosing the right architecture is crucial. The two most popular approaches are Monolithic Architecture and Microservices.
@@ -185,15 +187,16 @@ arr.forEach(item =&gt; console.log(item));</code></pre>
     ],
   },
   {
-  id: 4,
-  slug: "authentication-and-authorization",
-  title: "Authentication and authorization",
-  date: "Dec 1, 2024",
-  author: "Rahul Kumar",
-  category: "Security",
-  image: "/images/medium4.png", // Save the attached image in /public/images/
-  excerpt: "Authentication and authorization are two fundamental concepts in web application security. This guide explores best practices, libraries, and strategies for Node.js projects.",
-  content: `
+    id: 4,
+    slug: "authentication-and-authorization",
+    title: "Authentication and authorization",
+    date: "Dec 1, 2024",
+    author: "Rahul Kumar",
+    category: "Security",
+    image: "/images/medium4.png", // Save the attached image in /public/images/
+    excerpt: "Authentication and authorization are two fundamental concepts in web application security. This guide explores best practices, libraries, and strategies for Node.js projects.",
+    mediumUrl: "https://medium.com/@thenamerahulkr/authentication-and-authorization-are-two-fundamental-concepts-in-web-application-security-8271b80f83d9",
+    content: `
     <p class="text-xl leading-relaxed mb-6">
       Authentication and authorization are two fundamental concepts in web application security. They ensure that users have the right level of access to resources while protecting sensitive data. In this guide, we’ll explore how to implement authentication and authorization in Node.js applications, covering best practices, popular libraries, and strategies for securing your Node.js projects.
     </p>
@@ -221,32 +224,33 @@ arr.forEach(item =&gt; console.log(item));</code></pre>
       By following these guidelines, you can protect your Node.js applications from common security threats and ensure safe user access.
     </p>
   `,
-  relatedPosts: [
-    {
-      id: 3,
-      title: "Monolithic Architecture vs. Microservices: Which One to Choose?",
-      slug: "monolithic-vs-microservices-which-one-to-choose",
-      image: "/images/medium3.png?height=200&width=300",
-    },
-    {
-      id: 2,
-      title: "What is the React useEffect cleanup function, and how it works?",
-      slug: "react-useeffect-cleanup-function",
-      image: "/images/medium2.png?height=200&width=300",
-    }
-  ],
-},
-{
-  id: 5,
-  slug: "fetch-vs-axios-http-requests-in-javascript",
-  title: "Fetch vs. Axios HTTP Requests In JavaScript",
-  date: "Nov 28, 2024",
-  author: "Rahul Kumar",
-  category: "JavaScript",
-  image: "/images/dev5.png", // Save the attached image in /public/images/
-  excerpt:
-    "A practical comparison of Fetch and Axios for making HTTP requests in JavaScript. Learn the differences, pros, and cons of each approach with code examples.",
-  content: `
+    relatedPosts: [
+      {
+        id: 3,
+        title: "Monolithic Architecture vs. Microservices: Which One to Choose?",
+        slug: "monolithic-vs-microservices-which-one-to-choose",
+        image: "/images/medium3.png?height=200&width=300",
+      },
+      {
+        id: 2,
+        title: "What is the React useEffect cleanup function, and how it works?",
+        slug: "react-useeffect-cleanup-function",
+        image: "/images/medium2.png?height=200&width=300",
+      }
+    ],
+  },
+  {
+    id: 5,
+    slug: "fetch-vs-axios-http-requests-in-javascript",
+    title: "Fetch vs. Axios HTTP Requests In JavaScript",
+    date: "Nov 28, 2024",
+    author: "Rahul Kumar",
+    category: "JavaScript",
+    image: "/images/dev5.png", // Save the attached image in /public/images/
+    excerpt:
+      "A practical comparison of Fetch and Axios for making HTTP requests in JavaScript. Learn the differences, pros, and cons of each approach with code examples.",
+    mediumUrl: "https://dev.to/thenamerahulkr/fetch-vs-axios-http-requests-in-javascript-11dl", // <-- Add your Medium URL here
+    content: `
     <p class="text-xl leading-relaxed mb-6">
       Fetch is a newer way to send HTTP requests. Before Fetch, XMLHttpRequest was a very popular way to send requests. In fact, it was the only way to send HTTP requests in the early days of JavaScript. XMLHttpRequest does not support promises and mostly relies on callbacks if we have nested requests, which could be too repetitive and hard to read. That’s when Fetch entered.
     </p>
@@ -290,32 +294,33 @@ arr.forEach(item =&gt; console.log(item));</code></pre>
       Both are great tools—pick the one that fits your project’s requirements!
     </p>
   `,
-  relatedPosts: [
-    {
-      id: 2,
-      title: "What is the React useEffect cleanup function, and how it works?",
-      slug: "react-useeffect-cleanup-function",
-      image: "/images/medium2.png?height=200&width=300",
-    },
-    {
-      id: 4,
-      title: "Authentication and authorization",
-      slug: "authentication-and-authorization",
-      image: "/images/medium4.png?height=200&width=300",
-    }
-  ],
-},
-{
-  id: 6,
-  slug: "expressjs-applications-with-middleware",
-  title: "Express.js Applications with Middleware",
-  date: "Nov 23, 2024",
-  author: "Rahul Kumar",
-  category: "Node.js",
-  image: "/images/dev6.png", // Save the attached image in /public/images/
-  excerpt:
-    "A practical guide to using middleware in Express.js applications. Learn what middleware is, how it works, and how to build scalable Node.js APIs with it.",
-  content: `
+    relatedPosts: [
+      {
+        id: 2,
+        title: "What is the React useEffect cleanup function, and how it works?",
+        slug: "react-useeffect-cleanup-function",
+        image: "/images/medium2.png?height=200&width=300",
+      },
+      {
+        id: 4,
+        title: "Authentication and authorization",
+        slug: "authentication-and-authorization",
+        image: "/images/medium4.png?height=200&width=300",
+      }
+    ],
+  },
+  {
+    id: 6,
+    slug: "expressjs-applications-with-middleware",
+    title: "Express.js Applications with Middleware",
+    date: "Nov 23, 2024",
+    author: "Rahul Kumar",
+    category: "Node.js",
+    image: "/images/dev6.png", // Save the attached image in /public/images/
+    excerpt:
+      "A practical guide to using middleware in Express.js applications. Learn what middleware is, how it works, and how to build scalable Node.js APIs with it.",
+    mediumUrl: "https://dev.to/thenamerahulkr/expressjs-applications-with-middleware-4oio", // <-- Add your Medium URL here
+    content: `
     <p class="text-xl leading-relaxed mb-6">
       Middleware is a core concept in Express.js that allows you to add additional functionality to your Node.js applications. In this article, we’ll explore what middleware is, how it works, and how you can use it to build robust APIs.
     </p>
@@ -350,25 +355,21 @@ arr.forEach(item =&gt; console.log(item));</code></pre>
       Mastering middleware is essential for building scalable and maintainable Node.js applications with Express.js.
     </p>
   `,
-  relatedPosts: [
-    {
-      id: 4,
-      title: "Authentication and authorization",
-      slug: "authentication-and-authorization",
-      image: "/images/medium4.png?height=200&width=300",
-    },
-    {
-      id: 3,
-      title: "Monolithic Architecture vs. Microservices: Which One to Choose?",
-      slug: "monolithic-vs-microservices-which-one-to-choose",
-      image: "/images/medium3.png?height=200&width=300",
-    }
-  ],
-}
-
-
-
-
+    relatedPosts: [
+      {
+        id: 4,
+        title: "Authentication and authorization",
+        slug: "authentication-and-authorization",
+        image: "/images/medium4.png?height=200&width=300",
+      },
+      {
+        id: 3,
+        title: "Monolithic Architecture vs. Microservices: Which One to Choose?",
+        slug: "monolithic-vs-microservices-which-one-to-choose",
+        image: "/images/medium3.png?height=200&width=300",
+      }
+    ],
+  }
   // ...add more posts as needed
 ];
 
@@ -459,7 +460,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Read this article on Medium
+                  Read this article on Medium or Dev
                 </a>
               </Button>
             </div>

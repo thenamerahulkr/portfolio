@@ -4,7 +4,8 @@ import { ArrowRight, Calendar, Github, Linkedin, Mail, Twitter, Globe, Facebook,
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-
+import { projects } from "./projects/page";
+import { blogPosts } from "./blog/page"; // Adjust path if needed
 // Mock workshops data
 // const workshops = [
 //   {
@@ -136,36 +137,42 @@ export default function HomePage() {
         </div>
 
         <div className="grid gap-24">
-          {[1, 2, 3].map((project) => (
-            <div key={project} className="group">
+          {projects.slice(0, 4).map((project, idx) => (
+            <div key={project.id} className="group">
               <div className="grid md:grid-cols-2 gap-12 items-center">
                 <div>
                   <span className="text-8xl font-bold text-muted/30 group-hover:text-muted/50 transition-colors">
-                    0{project}
+                    {(idx + 1).toString().padStart(2, "0")}
                   </span>
                   <h3 className="text-4xl font-bold mb-6 -mt-8 group-hover:translate-x-2 transition-transform">
-                    Project {project}
+                    {project.title}
                   </h3>
                   <p className="text-xl text-muted-foreground mb-8">
-                    A detailed description of this project, including the problem it solves, the technologies used, and
-                    the challenges overcome during development.
+                    {project.description}
                   </p>
+                  <div className="flex flex-wrap gap-2 mb-8">
+                    {project.technologies.map((tech) => (
+                      <span key={tech} className="px-3 py-1 bg-muted text-muted-foreground rounded-full text-sm">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
                   <Button
                     asChild
                     variant="outline"
                     size="lg"
                     className="group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
                   >
-                    <Link href={`/projects/project-${project}`}>View Project</Link>
+                    <Link href={`/projects/${project.slug}`}>View Project</Link>
                   </Button>
                 </div>
                 <div className="overflow-hidden rounded-lg">
                   <div className="aspect-video bg-muted rounded-lg overflow-hidden transition-transform group-hover:scale-105 duration-500">
                     <Image
-                      src={`/placeholder.svg?height=270&width=480`}
-                      alt={`Project ${project}`}
-                      width={480}
-                      height={270}
+                      src={project.image || "/placeholder.svg"}
+                      alt={project.title}
+                      width={800}
+                      height={600}
                       className="w-full h-full object-cover"
                     />
                   </div>
@@ -272,28 +279,28 @@ export default function HomePage() {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {[1, 2, 3].map((post) => (
+          {blogPosts.slice(0, 3).map((post) => (
             <Link
-              key={post}
-              href={`/blog/post-${post}`}
+              key={post.id}
+              href={`/blog/${post.slug}`}
               className="group block bg-card rounded-lg overflow-hidden border border-border hover:shadow-lg transition-shadow"
             >
               <div className="aspect-video bg-muted overflow-hidden">
                 <Image
-                  src={`/placeholder.svg?height=200&width=400`}
-                  alt={`Blog Post ${post}`}
+                  src={post.image || "/placeholder.svg"}
+                  alt={post.title}
                   width={400}
                   height={200}
                   className="w-full h-full object-cover transition-transform group-hover:scale-105 duration-500"
                 />
               </div>
               <div className="p-6">
-                <div className="text-sm text-muted-foreground mb-2">March {post}, 2025</div>
+                <div className="text-sm text-muted-foreground mb-2">{post.date}</div>
                 <h3 className="text-2xl font-bold mb-2 group-hover:text-primary transition-colors">
-                  Typography in Web Design: Best Practice
+                  {post.title}
                 </h3>
                 <p className="text-muted-foreground">
-                  Learn how to use typography effectively to create beautiful and readable web experiences.
+                  {post.excerpt}
                 </p>
               </div>
             </Link>
