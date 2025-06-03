@@ -55,7 +55,7 @@ Features dynamic routing, SEO optimization, dark mode, and interactive UI elemen
 
 > _Add your screenshots here for visual reference!_
 
-![alt text]({A08A5A7B-F8D8-43F7-A24F-E1FF9740041F}.png)\
+![Portfolio Screenshot](public/images/portfolio.png)
 
 
 
