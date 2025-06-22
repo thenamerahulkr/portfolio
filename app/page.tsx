@@ -1,49 +1,55 @@
 import Link from "next/link"
 import Image from "next/image"
-import { ArrowRight, Calendar, Github, Linkedin, Mail, Twitter, Globe, Facebook, BookOpen, Code2, Send, MessageCircle } from "lucide-react"
+import { ArrowRight, Github, Linkedin, Twitter, Facebook, BookOpen, Code2, Send, MessageCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { projects } from "./projects/page";
-import { blogPosts } from "./blog/page"; // Adjust path if needed
-// Mock workshops data
-// const workshops = [
-//   {
-//     id: 1,
-//     title: "Advanced React Patterns",
-//     description: "Learn advanced React patterns and techniques to build scalable applications.",
-//     date: "April 15, 2025",
-//     time: "10:00 AM - 2:00 PM",
-//     location: "Online",
-//     image: "/placeholder.svg?height=300&width=500",
-//     status: "Upcoming",
-//     slug: "advanced-react-patterns",
-//   },
-//   {
-//     id: 2,
-//     title: "TypeScript for JavaScript Developers",
-//     description: "A comprehensive introduction to TypeScript for experienced JavaScript developers.",
-//     date: "May 10, 2025",
-//     time: "9:00 AM - 12:00 PM",
-//     location: "Tech Hub, San Francisco",
-//     image: "/placeholder.svg?height=300&width=500",
-//     status: "Upcoming",
-//     slug: "typescript-for-javascript-developers",
-//   },
-//   {
-//     id: 3,
-//     title: "Building with Next.js",
-//     description: "Explore the features of Next.js and learn how to build performant web applications.",
-//     date: "March 5, 2025",
-//     time: "1:00 PM - 5:00 PM",
-//     location: "Online",
-//     image: "/placeholder.svg?height=300&width=500",
-//     status: "Past",
-//     slug: "building-with-nextjs",
-//   },
-// ]
+import { supabase } from '@/lib/supabase.';
+import ContactForm from "@/components/ContactForm"; 
+import { EducationSection } from '@/components/EducationSection';
 
-export default function HomePage() {
+// Make the component an async function to fetch data
+export const metadata = {
+  title: "Portfolio | thenamerahulkr",
+  description: "Full Stack Developer | React | Next.js | Supabase",
+  icons: {
+    icon: "/mine.ico", 
+  },
+};
+export function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en">
+      <body>{children}</body>
+    </html>
+  );
+}
+
+export default async function HomePage() {
+  // Fetch featured projects
+  const { data: projects, error: projectsError } = await supabase
+    .from('projects')
+    .select('*')
+    .order('id', { ascending: true }) // Order by creation date, newest first
+    .limit(4); // Get only the top 4 for the homepage
+
+  if (projectsError) {
+    console.error('Error fetching projects:', projectsError);
+  }
+
+  // Fetch recent blog posts
+  const { data: blogPosts, error: blogPostsError } = await supabase
+    .from('blogs')
+    .select('*')
+    .order('created_at', { ascending: false }) // Order by creation date, newest first
+    .limit(3); // Get only the top 3 for the homepage
+
+  if (blogPostsError) {
+    console.error('Error fetching blog posts:', blogPostsError);
+  }
+
+  // Ensure data is an array, even if null or undefined from Supabase
+  const featuredProjects = projects || [];
+  const recentBlogPosts = blogPosts || [];
+
+
   return (
     <div className="pt-20">
       {/* Hero Section */}
@@ -67,21 +73,27 @@ export default function HomePage() {
               </Button>
             </div>
           </div>
-          <div className="relative">
-            <div className="absolute -top-10 -left-10 w-40 h-40 bg-muted rounded-full opacity-50"></div>
-            <div className="absolute -bottom-10 -right-10 w-60 h-60 bg-muted rounded-full opacity-50"></div>
-            <div className="relative z-10 aspect-square bg-muted rounded-2xl overflow-hidden border border-border">
-              <Image
-                src="/images/profile.png?height=300&width=300"
-                alt="rahul kr"
-                width={200}
-                height={200}
-                className="w-full h-full object-cover"
-              />
-            </div>
-          </div>
-        </div>
-        <div className="flex justify-center mt-16">
+          <div
+            className="group relative rounded-2xl overflow-hidden
+             transition-all duration-300 ease-in-out
+             hover:scale-[0.98] hover:shadow-lg hover:border hover:border-primary/50
+             hover:bg-background/50 hover:dark:bg-secondary/10"
+            >
+           <div className="absolute -top-10 -left-10 w-40 h-40 bg-muted rounded-full opacity-50"></div>
+           <div className="absolute -bottom-10 -right-10 w-60 h-60 bg-muted rounded-full opacity-50"></div>
+
+          <div className="relative z-10 aspect-square bg-muted border border-border">
+          <Image
+          src="/images/profile.png?height=300&width=300"
+          alt="rahul kr"
+          width={200}
+          height={200}
+          className="w-full h-full object-cover transition-transform group-hover:scale-105 duration-500"
+          />
+         </div>
+         </div>
+         </div>
+         <div className="flex justify-center mt-16">
           <a href="#about" className="animate-bounce">
             <ArrowRight className="h-10 w-10 rotate-90 text-muted-foreground" />
           </a>
@@ -102,23 +114,12 @@ export default function HomePage() {
               "I'm passionate about learning and improving myself daily, with expertise in React, the basics of Next.js, and Node.js, focusing on building responsive and accessible web applications."
             </p>
             <p className="body-lg mb-6">
-              When I'm not coding, you can find me hiking, reading, or experimenting with new technologies. I believe in
-              clean, minimal design that puts the focus on content and user experience.
+            When I’m not coding, I enjoy reading, learning about emerging technologies, or experimenting with new tools and frameworks. I believe in clean, minimal design that keeps the focus on content and user experience.
             </p>
-            {/* <p className="body-lg mb-10">
-              I also regularly conduct{" "}
-              <Link href="/workshops" className="font-medium underline underline-offset-4">
-                workshops and training sessions
-              </Link>{" "}
-              for developers looking to level up their skills in modern web technologies.
-            </p> */}
             <div className="flex flex-wrap gap-4">
               <Button asChild variant="outline" size="lg">
                 <Link href="/blog">Read My Blog</Link>
               </Button>
-              {/* <Button asChild variant="outline" size="lg">
-                <Link href="/workshops">View Workshops</Link>
-              </Button> */}
             </div>
           </div>
         </div>
@@ -137,7 +138,7 @@ export default function HomePage() {
         </div>
 
         <div className="grid gap-24">
-          {projects.slice(0, 4).map((project, idx) => (
+          {featuredProjects.slice(0, 4).map((project, idx) => (
             <div key={project.id} className="group">
               <div className="grid md:grid-cols-2 gap-12 items-center">
                 <div>
@@ -151,7 +152,7 @@ export default function HomePage() {
                     {project.description}
                   </p>
                   <div className="flex flex-wrap gap-2 mb-8">
-                    {project.technologies.map((tech) => (
+                    {project.technologies.map((tech: string) => (
                       <span key={tech} className="px-3 py-1 bg-muted text-muted-foreground rounded-full text-sm">
                         {tech}
                       </span>
@@ -182,61 +183,6 @@ export default function HomePage() {
           ))}
         </div>
       </section>
-
-      {/* Workshops Section */}
-      {/* <section className="container-custom section-spacing">
-        <div className="flex flex-col md:flex-row justify-between items-baseline mb-16">
-          <h2 className="heading-lg relative">
-            Workshops
-            <span className="absolute -z-10 text-[10rem] font-bold text-muted/20 -top-20 -left-6 opacity-80">03</span>
-          </h2>
-          <Link href="/workshops" className="link-underline text-lg text-muted-foreground mt-4 md:mt-0">
-            View All Workshops
-          </Link>
-        </div>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {workshops.map((workshop) => (
-            <Card key={workshop.id} className="group overflow-hidden border border-border bg-card">
-              <div className="aspect-video overflow-hidden">
-                <Image
-                  src={workshop.image || "/placeholder.svg"}
-                  alt={workshop.title}
-                  width={500}
-                  height={300}
-                  className="w-full h-full object-cover transition-transform group-hover:scale-105 duration-500"
-                />
-              </div>
-              <CardHeader className="p-6">
-                <div className="flex justify-between items-start mb-2">
-                  <Badge variant={workshop.status === "Upcoming" ? "default" : "secondary"}>{workshop.status}</Badge>
-                </div>
-                <CardTitle className="text-2xl group-hover:text-primary transition-colors">{workshop.title}</CardTitle>
-                <CardDescription className="line-clamp-2">{workshop.description}</CardDescription>
-              </CardHeader>
-              <CardContent className="p-6 pt-0 space-y-2">
-                <div className="flex items-center text-sm text-muted-foreground">
-                  <Calendar className="h-4 w-4 mr-2" />
-                  <span>{workshop.date}</span>
-                </div>
-                <div className="flex items-center text-sm text-muted-foreground">
-                  <Users className="h-4 w-4 mr-2" />
-                  <span>{workshop.location}</span>
-                </div>
-              </CardContent>
-              <CardFooter className="p-6 pt-0">
-                <Button
-                  asChild
-                  variant="outline"
-                  className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
-                >
-                  <Link href={`/workshops/${workshop.slug}`}>Learn More</Link>
-                </Button>
-              </CardFooter>
-            </Card>
-          ))}
-        </div>
-      </section> */}
 
       {/* Skills Section */}
       <section className="container-custom section-spacing">
@@ -279,7 +225,7 @@ export default function HomePage() {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {blogPosts.slice(0, 3).map((post) => (
+          {recentBlogPosts.map((post) => (
             <Link
               key={post.id}
               href={`/blog/${post.slug}`}
@@ -308,6 +254,11 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Education Section */}
+      <section id="education">
+        <EducationSection />
+      </section>
+
       {/* Contact Section */}
       <section id="contact" className="container-custom section-spacing">
         <h2 className="heading-lg mb-16 relative text-center">
@@ -320,56 +271,50 @@ export default function HomePage() {
           <div>
             <p className="text-2xl leading-relaxed mb-10">
               I'm always open to new opportunities and collaborations. Feel free to reach out!
+              Whether you have a question, want to discuss a project, or just say hello, I'd love to hear from you.
             </p>
             <div className="flex flex-col gap-6">
-              <a
-                href="mailto:thenamerahulkr@gmail.com?subject=Contact%20from%20Portfolio&body=Hi%20Rahul%2C%0A%0AI%20found%20your%20portfolio%20and%20would%20like%20to%20connect."
-                className="flex items-center gap-4 text-xl text-muted-foreground hover:text-foreground group"
-              >
-                <Mail className="h-6 w-6 group-hover:scale-110 transition-transform" />
-                <span className="link-underline">Mail</span>
-              </a>
-              <a href="https://www.linkedin.com/in/thenamerahulkr" className="flex items-center gap-4 text-xl text-muted-foreground hover:text-foreground group">
+              <a href="https://www.linkedin.com/in/thenamerahulkr" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 text-xl text-muted-foreground hover:text-foreground group">
                 <Linkedin className="h-6 w-6 group-hover:scale-110 transition-transform" />
                 <span className="link-underline">linkedin</span>
               </a>
-              <a href="https://github.com/thenamerahulkr" className="flex items-center gap-4 text-xl text-muted-foreground hover:text-foreground group">
+              <a href="https://github.com/thenamerahulkr/thenamerahulkr" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 text-xl text-muted-foreground hover:text-foreground group">
                 <Github className="h-6 w-6 group-hover:scale-110 transition-transform" />
                 <span className="link-underline">github</span>
               </a>
-              <a href="https://twitter.com/thenamerahulkr" className="flex items-center gap-4 text-xl text-muted-foreground hover:text-foreground group">
+              <a href="https://twitter.com/thenamerahulkr" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 text-xl text-muted-foreground hover:text-foreground group">
                 <Twitter className="h-6 w-6 group-hover:scale-110 transition-transform" />
                 <span className="link-underline">twitter</span>
               </a>
               {/* WhatsApp */}
-              <a href="https://wa.me/918404844101" className="flex items-center gap-4 text-xl text-muted-foreground hover:text-foreground group">
+              <a href="https://wa.me/918404844101" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 text-xl text-muted-foreground hover:text-foreground group">
                 <MessageCircle className="h-6 w-6 group-hover:scale-110 transition-transform" />
                 <span className="link-underline">WhatsApp</span>
               </a>
               {/* Telegram */}
-              <a href="https://t.me/thenamerahulkr" className="flex items-center gap-4 text-xl text-muted-foreground hover:text-foreground group">
+              <a href="https://t.me/thenamerahulkr" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 text-xl text-muted-foreground hover:text-foreground group">
                 <Send className="h-6 w-6 group-hover:scale-110 transition-transform" />
                 <span className="link-underline">Telegram</span>
               </a>
               {/* Facebook */}
-              <a href="https://facebook.com/thenamerahulkr" className="flex items-center gap-4 text-xl text-muted-foreground hover:text-foreground group">
+              <a href="https://facebook.com/thenamerahulkr" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 text-xl text-muted-foreground hover:text-foreground group">
                 <Facebook className="h-6 w-6 group-hover:scale-110 transition-transform" />
                 <span className="link-underline">facebook</span>
               </a>
               {/* Medium */}
-              <a href="https://medium.com/@thenamerahulkr" className="flex items-center gap-4 text-xl text-muted-foreground hover:text-foreground group">
+              <a href="https://medium.com/@thenamerahulkr" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 text-xl text-muted-foreground hover:text-foreground group">
                 <BookOpen className="h-6 w-6 group-hover:scale-110 transition-transform" />
                 <span className="link-underline">Medium</span>
               </a>
               {/* DEV */}
-              <a href="https://dev.to/thenamerahulkr" className="flex items-center gap-4 text-xl text-muted-foreground hover:text-foreground group">
+              <a href="https://dev.to/thenamerahulkr" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 text-xl text-muted-foreground hover:text-foreground group">
                 <Code2 className="h-6 w-6 group-hover:scale-110 transition-transform" />
                 <span className="link-underline">DEV</span>
               </a>
             </div>
           </div>
           <div>
-            {/* You can add a contact form or map here if you like */}
+            <ContactForm /> {/* Render the new ContactForm component here */}
           </div>
         </div>
       </section>

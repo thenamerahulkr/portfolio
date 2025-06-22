@@ -1,5 +1,4 @@
 "use client"
-
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { Menu, X } from "lucide-react"
@@ -7,7 +6,6 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { ThemeToggle } from "@/components/theme/theme-toggle"
-
 export function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const pathname = usePathname()
@@ -15,9 +13,9 @@ export function Navigation() {
   const routes = [
     { name: "Home", path: "/" },
     { name: "Projects", path: "/projects" },
-    // { name: "Workshops", path: "/workshops" },
-    { name: "Blog", path: "/blog" },
+    { name: "Blogs", path: "/blog" },
     { name: "Contact", path: "/#contact" },
+    { name: "Education", path: "/#education" },
   ]
 
   return (

@@ -3,7 +3,7 @@ import { Github, Linkedin, Mail, Twitter } from "lucide-react"
 
 export function Footer() {
   return (
-    <footer className="border-t border-border py-12 mt-20">
+    <footer className="border-t border-border py-12 ">
       <div className="container-custom">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           <div>
@@ -28,11 +28,6 @@ export function Footer() {
                   Projects
                 </Link>
               </li>
-              {/* <li>
-                <Link href="/workshops" className="text-muted-foreground hover:text-foreground transition-colors">
-                  Workshops
-                </Link>
-              </li> */}
               <li>
                 <Link href="/blog" className="text-muted-foreground hover:text-foreground transition-colors">
                   Blog
@@ -43,19 +38,17 @@ export function Footer() {
                   Contact
                 </Link>
               </li>
+              <li>
+                <Link href="/#education" className="text-muted-foreground hover:text-foreground transition-colors">
+                  Education
+                </Link>
+              </li>
             </ul>
           </div>
 
           <div>
             <h3 className="text-xl font-medium mb-4">Connect</h3>
             <div className="flex space-x-4">
-              <a
-                href="mailto:thenamerahulkr@gmail.com"
-                className="text-muted-foreground hover:text-foreground transition-colors"
-              >
-                <Mail className="h-6 w-6" />
-                <span className="sr-only">Email</span>
-              </a>
               <a
                 href="https://www.linkedin.com/in/thenamerahulkr/"
                 target="_blank"

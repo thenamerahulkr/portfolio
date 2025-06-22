@@ -13,6 +13,13 @@ try {
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  webpack: (config) => {
+    config.resolve.fallback = {
+      ...config.resolve.fallback,
+      punycode: false,
+    };
+    return config;
+  },
   eslint: {
     ignoreDuringBuilds: true,
   },
@@ -28,9 +35,10 @@ const nextConfig = {
     parallelServerCompiles: true,
   },
   devIndicators: {
-    // Disable React DevTools UI and other dev indicators
-    buildActivity: false, 
-    buildActivityPosition: 'bottom-right',
+    // Corrected configuration:
+    // 'buildActivity' is removed as it's deprecated.
+    // 'buildActivityPosition' is renamed to 'position'.
+    position: 'bottom-right', // Set your desired position here
   },
 };
 
